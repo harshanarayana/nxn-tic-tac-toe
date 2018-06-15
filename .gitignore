@@ -1,5 +1,10 @@
 .idea/
 *egg-info
+<<<<<<< HEAD
+=======
+*.pyc
+
+>>>>>>> fix gitignore configuration
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -103,4 +108,8 @@ venv.bak/
 /site
 
 # mypy
+<<<<<<< HEAD
 .mypy_cache/
+=======
+.mypy_cache/
+>>>>>>> fix gitignore configuration
