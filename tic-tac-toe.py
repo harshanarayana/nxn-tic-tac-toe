@@ -94,20 +94,38 @@ def start_game(game: GameBoard):
 if __name__ == "__main__":
     while True:
         print("Welcome to a Game of Tic-Tac-Toe.\n\n")
+        default_size = 3
         size = input(
-            "Please Enter the Size of Board you want to Play with (NxN)[3]: ")
+            "Please Enter the Size of Board you want to Play with "
+            "(NxN)[{}]: ".format(default_size))
         if len(size) < 1:
             size = 3
         else:
-            size = int(size)
+            try:
+                size = int(size)
+                if size < 0:
+                    raise ValueError()
+            except ValueError:
+                print("You entered an Invalid Value. Defaulting to {}".format(
+                    default_size))
+                size = default_size
+
+        default_win_count = size
 
         win_count = input(
             "Please Enter the Number of Marker in a Row that declares the "
-            "player a winner [3]: ")
+            "player a winner [{}]: ".format(default_win_count))
         if len(win_count) < 1:
             win_count = 3
         else:
-            win_count = int(win_count)
+            try:
+                win_count = int(win_count)
+                if win_count > size or win_count < 0:
+                    raise ValueError()
+            except ValueError:
+                print("You entered an Invalid Value. Defaulting to {}".format(
+                    default_win_count))
+                win_count = default_win_count
 
         player1 = get_player_info(1)
         player2 = get_player_info(2)
