@@ -1,10 +1,9 @@
 from typing import List, Dict
-from texttable import Texttable
 
-from ttt.player import Player
 from ttt.helper_util import (PositionOccupiedException,
                              InvalidCellPosition, AllMovesExhausedWithNoWinner,
                              BgColors)
+from ttt.player import Player
 
 
 class Move(object):
