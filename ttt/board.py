@@ -29,7 +29,7 @@ class Move(object):
 
     def __str__(self):
         """String representation of a Move"""
-        return "[Selected position: {]]".format(self._position)
+        return "[Selected position: {}]".format(self._position)
 
 
 class Grid(object):

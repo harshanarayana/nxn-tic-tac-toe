@@ -29,12 +29,12 @@ def move_and_check_if_over(game: GameBoard, player: Player,
     return None
 
 def _check_board_and_score(game: GameBoard, player: Player, move: Move,
-                           dir: List[int]) -> int:
+                           direction: List[int]) -> int:
     grid = game.cell(move=move)
     match = 0
     for i in range(1, game.win_count):
-        row = grid.row + dir[0] * i
-        col = grid.col + dir[1] * i
+        row = grid.row + direction[0] * i
+        col = grid.col + direction[1] * i
         if row < 0 or col < 0:
             break
         if row >= game.rows or col >= game.columns:
@@ -52,7 +52,7 @@ def _check_winner(game: GameBoard, player: Player, move: Move,
     score = 1
     for row_dir, col_dir in zip(row_dirs, col_dirs):
         score += _check_board_and_score(game=game, player=player, move=move,
-                                        dir=[row_dir, col_dir])
+                                        direction=[row_dir, col_dir])
         if score >= game.win_count:
             return True
     return False
