@@ -183,6 +183,7 @@ class GameBoard(object):
 
     @staticmethod
     def _color_me(symbol: str):
+        """Add Colours to the User Selection based on the Player Marker"""
         space = "  "
         if len(symbol) < 2:
             space += " "
@@ -225,6 +226,7 @@ class GameBoard(object):
         self._initialize_board()
 
     def __str__(self):
+        """String representation of the Board at any point in time as string."""
         string = '-------' * self.rows + '--' * (self.columns - 1) + "-"
         string += "\n"
         for row in [

@@ -19,6 +19,7 @@ symbols = {
 @ensure("Color Can be one of the Defined Types",
         lambda args, result: result in [BgColors.PURPLE, BgColors.ORANGE])
 def get_color(current_player: Player):
+    """Yield the color for Pattern to use in the Console while fetching input"""
     if current_player.marker.lower() == 'x':
         return BgColors.PURPLE
     elif current_player.marker.lower() == 'o':
@@ -30,6 +31,7 @@ def get_color(current_player: Player):
 @ensure("Requires a valid Player to be returned",
         lambda args, result: isinstance(result, Player))
 def get_player_info(count: int) -> Player:
+    """Fetch Player Details before starting the game."""
     while True:
         name = str(input("\nEnter name for Player {}: \n>> ".format(count)))
         if len(name) > 0:
@@ -41,6 +43,7 @@ def get_player_info(count: int) -> Player:
 @ensure("Requires a valid return move",
         lambda args, result: isinstance(result, Move))
 def get_move(current_player: Player) -> Move:
+    """Fetch and validate a move from the Player."""
     while True:
         position = input(
             get_color(current_player=current_player) +
@@ -55,6 +58,10 @@ def get_move(current_player: Player) -> Move:
 
 
 def start_game(current_game: GameBoard):
+    """
+    Start the game in an infinite loop so that the players can opt to continue
+    the game if they choose to.
+    """
     while True:
         turn = 0
         done = False
