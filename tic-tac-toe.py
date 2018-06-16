@@ -13,8 +13,8 @@ symbols = {
 }
 
 
-def get_color(player: Player):
-    if player.marker.lower() == 'x':
+def get_color(current_player: Player):
+    if current_player.marker.lower() == 'x':
         return BgColors.PURPLE
     else:
         return BgColors.ORANGE
@@ -27,14 +27,13 @@ def get_player_info(count: int) -> Player:
             return Player(name=name, marker="{}".format(symbols[count]))
 
 
-def get_move(player: Player) -> Move:
+def get_move(current_player: Player) -> Move:
     while True:
         position = input(
-            get_color(
-                player=player) + "{}, choose a box to place an '{}' "
-                                 "into: \n >> ".format(
-                player.name,
-                player.marker) + BgColors.RESET)
+            get_color(current_player=current_player) +
+            "{}, choose a box to place an '{}' into: \n >> ".format(
+                current_player.name,
+                current_player.marker) + BgColors.RESET)
         if len(position) > 0:
             try:
                 return Move(position=int(position))
@@ -42,25 +41,25 @@ def get_move(player: Player) -> Move:
                 pass
 
 
-def start_game(game: GameBoard):
+def start_game(current_game: GameBoard):
     while True:
         turn = 0
         done = False
-        while turn <= game.max_moves and not done:
-            player = (turn + 1) % 2 + 1
+        while turn <= current_game.max_moves and not done:
+            whose_turn = (turn + 1) % 2 + 1
             while True:
                 print("\n")
-                print(game)
-                move = get_move(players[player])
+                print(current_game)
+                move = get_move(players[whose_turn])
                 try:
-                    winner = move_and_check_if_over(game=game,
-                                                    player=players[player],
+                    winner = move_and_check_if_over(game=current_game,
+                                                    current_player=players[whose_turn],
                                                     move=move)
                     if winner is not None:
                         print("\n")
-                        print(game)
+                        print(current_game)
                         print("Congratulations {} You have won.\n\n".format(
-                            players[player].name))
+                            players[whose_turn].name))
                         done = True
                         break
                     else:
@@ -75,7 +74,7 @@ def start_game(game: GameBoard):
                 except InvalidCellPosition:
                     print("You've picked an Invalid Cell. Please pick another.")
             turn += 1
-            if turn == game.max_moves:
+            if turn == current_game.max_moves:
                 print("The Game has ended in a Tie. !!!")
                 break
         c = input(
@@ -86,7 +85,7 @@ def start_game(game: GameBoard):
         elif len(c) > 1:
             sys.exit(0)
         elif c.upper() == 'Y':
-            game.reset()
+            current_game.reset()
         else:
             sys.exit(0)
 
@@ -134,4 +133,4 @@ if __name__ == "__main__":
         game = GameBoard(n=size, win_count=win_count, player1=player1,
                          player2=player2)
 
-        start_game(game=game)
+        start_game(current_game=game)
