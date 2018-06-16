@@ -26,7 +26,7 @@ def get_color(current_player: Player):
 
 
 @require("Player Number to be an integer",
-         lambda args: type(args.count) is int)
+         lambda args: isinstance(args.count, int))
 @ensure("Requires a valid Player to be returned",
         lambda args, result: isinstance(result, Player))
 def get_player_info(count: int) -> Player:
