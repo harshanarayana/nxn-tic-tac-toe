@@ -5,7 +5,7 @@ class Player(object):
     """Provide a Player Representation for the Tic-Tac-Toe Game"""
 
     @require("Player name has to be a String value",
-             lambda args: type(args.name) is str)
+             lambda args: isinstance(args.name, str))
     @require("Player Marker can be one of X/O",
              lambda args: args.marker.lower() in ["x", "o"])
     def __init__(self, name: str, marker: str):
