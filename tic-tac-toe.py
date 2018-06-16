@@ -64,7 +64,7 @@ def start_game(current_game: GameBoard):
                         break
                     else:
                         break
-                except AllMovesExhausedWithNoWinner:
+                except AllMovesExhaustedWithNoWinner:
                     print("The Game has ended in a Tie. !!!")
                     done = True
                     break

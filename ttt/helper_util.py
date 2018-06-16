@@ -12,9 +12,9 @@ class InvalidCellPosition(Exception):
         super(InvalidCellPosition, self).__init__(message)
 
 
-class AllMovesExhausedWithNoWinner(Exception):
+class AllMovesExhaustedWithNoWinner(Exception):
     def __init__(self):
-        super(AllMovesExhausedWithNoWinner, self).__init__()
+        super(AllMovesExhaustedWithNoWinner, self).__init__()
 
 
 def generate_range(start: int, end: int) -> List[int]:

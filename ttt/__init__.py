@@ -1,7 +1,7 @@
 from typing import List
 
 from ttt.board import GameBoard, Move
-from ttt.helper_util import AllMovesExhausedWithNoWinner
+from ttt.helper_util import AllMovesExhaustedWithNoWinner
 from ttt.player import Player
 
 
@@ -17,7 +17,7 @@ def move_and_check_if_over(game: GameBoard, current_player: Player,
                 return current_player
 
     elif game.exhausted_moves:
-        raise AllMovesExhausedWithNoWinner()
+        raise AllMovesExhaustedWithNoWinner()
 
     return None
 

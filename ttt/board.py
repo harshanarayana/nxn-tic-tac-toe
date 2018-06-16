@@ -1,7 +1,7 @@
 from typing import List, Dict
 
 from ttt.helper_util import (PositionOccupiedException,
-                             InvalidCellPosition, AllMovesExhausedWithNoWinner,
+                             InvalidCellPosition, AllMovesExhaustedWithNoWinner,
                              BgColors)
 from ttt.player import Player
 
@@ -171,15 +171,18 @@ class GameBoard(object):
         """Given a move, find the Grid corresponding to the move."""
         return self._grid_map[self._index_to_grid_map[move.position]]
 
-    def _get_key(self, row: int, col: int):
+    @staticmethod
+    def _get_key(row: int, col: int):
         """Generate a Key item that will be used as a reverse lookup for grid"""
         return str(row) + "-" + str(col)
 
     def _find_who_occupied_the_cell(self, grid: Grid) -> Player:
         """Identify who is occupying the cell to which the move is being made"""
-        return self._player1 if grid.symbol == self._player1.marker else self._player2
+        return self._player1 if grid.symbol == \
+            self._player1.marker else self._player2
 
-    def _color_me(self, symbol: str):
+    @staticmethod
+    def _color_me(symbol: str):
         space = "  "
         if len(symbol) < 2:
             space += " "
@@ -200,7 +203,7 @@ class GameBoard(object):
         3. Check if the position is already occupied by someone.
         """
         if self._moves_made == self._max_turn:
-            raise AllMovesExhausedWithNoWinner()
+            raise AllMovesExhaustedWithNoWinner()
         if move.position in self._index_to_grid_map and player is not None:
             key = self._index_to_grid_map[move.position]
             if (self._grid_map[key].symbol not in [self._player1.marker,
