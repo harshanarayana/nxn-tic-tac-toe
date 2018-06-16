@@ -4,6 +4,7 @@ from typing import Dict
 from ttt import *
 from ttt.helper_util import PositionOccupiedException, InvalidCellPosition, \
     BgColors
+from utils.contracts import require, ensure
 
 players: Dict[int, Player] = {}
 
@@ -13,13 +14,21 @@ symbols = {
 }
 
 
+@require("Player to be an Instance of Player",
+         lambda args: isinstance(args.current_player, Player))
+@ensure("Color Can be one of the Defined Types",
+        lambda args, result: result in [BgColors.PURPLE, BgColors.ORANGE])
 def get_color(current_player: Player):
     if current_player.marker.lower() == 'x':
         return BgColors.PURPLE
-    else:
+    elif current_player.marker.lower() == 'o':
         return BgColors.ORANGE
 
 
+@require("Player Number to be an integer",
+         lambda args: type(args.count) is int)
+@ensure("Requires a valid Player to be returned",
+        lambda args, result: isinstance(result, Player))
 def get_player_info(count: int) -> Player:
     while True:
         name = str(input("\nEnter name for Player {}: \n>> ".format(count)))
@@ -27,6 +36,10 @@ def get_player_info(count: int) -> Player:
             return Player(name=name, marker="{}".format(symbols[count]))
 
 
+@require("Current Player to be not None and valid",
+         lambda args: args.current_player in players.values())
+@ensure("Requires a valid return move",
+        lambda args, result: isinstance(result, Move))
 def get_move(current_player: Player) -> Move:
     while True:
         position = input(
@@ -52,9 +65,9 @@ def start_game(current_game: GameBoard):
                 print(current_game)
                 move = get_move(players[whose_turn])
                 try:
-                    winner = move_and_check_if_over(game=current_game,
-                                                    current_player=players[whose_turn],
-                                                    move=move)
+                    winner = move_and_check_if_over(
+                        game=current_game, current_player=players[whose_turn],
+                        move=move)
                     if winner is not None:
                         print("\n")
                         print(current_game)

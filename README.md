@@ -6,6 +6,7 @@
 # Setup
 ## Requirements
 1. Python 3.6.5 or higher. Preferably [Anaconda](https://www.anaconda.com/download/) v3.6
+2. [Contracts](https://github.com/deadpixi/contracts) Provides Type safe runtime checks.
 
 ## Pre-Requisite
 1. Install and setup Python 3.6.5 or higher.
@@ -20,7 +21,9 @@ conda create -n zendesk python=3.6.5 anaconda
 source activate zendesk
 
 # Install Tic-Tac-Toe
+pip install -r requirements.txt
 pip install -e .
+
 ```
 
 # Running the Game
