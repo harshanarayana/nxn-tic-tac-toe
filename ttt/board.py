@@ -222,13 +222,13 @@ class GameBoard(object):
         self._initialize_board()
 
     def __str__(self):
-        string = '-------' * self.rows + '--' * (self.columns - 1)
+        string = '-------' * self.rows + '--' * (self.columns - 1) + "-"
         string += "\n"
         for row in [
             [self._color_me(self._grid_map[self._get_key(row, col)].symbol) for
              col in range(0, self._columns)] for row in range(0, self._rows)]:
-            string += "  |  ".join([i for i in row])
+            string += '|  ' + "  |  ".join([i for i in row]) + '|'
             string += "\n"
-            string += '-------' * self.rows + '--' * (self.columns - 1)
+            string += '-------' * self.rows + '--' * (self.columns - 1) + "-"
             string += "\n"
         return string
