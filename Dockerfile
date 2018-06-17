@@ -1,7 +1,7 @@
 # Fetch the Base container Image with 3.6.5
 FROM python:3.6.5-alpine3.6
 
-MAINTAINER harsha2k4@gmail.com
+LABEL maintainer="harsha2k4@gmail.com"
 
 # Copy Game Stuff to Container
 COPY ttt /game/ttt
