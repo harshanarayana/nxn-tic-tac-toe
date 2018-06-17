@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  tic-tac-toe:
+    container_name: tic-tac-toe
+    restart: always
+    tty: true
+    stdin_open: true
+    build: .
+    command: ["tic-tac-toe"]
+    
