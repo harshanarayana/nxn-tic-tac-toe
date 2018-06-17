@@ -8,4 +8,3 @@ services:
     stdin_open: true
     build: .
     command: ["tic-tac-toe"]
-    

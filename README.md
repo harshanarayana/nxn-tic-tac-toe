@@ -34,6 +34,18 @@ Navigate to the directory that contains the copy of the Git Code and run the fol
 python tic-tac-toe.py
 ``` 
 
+# Run Game Using Docker
+``bash
+# Start the Docker Image by building it if necessary
+docker-compose up
+
+# Find the Docker Process with Container Name "tic-tac-toe"
+docker ps 
+
+# Start the Game
+docker exec -it <container_number> tic-tac-toe
+``
+
 After running the command, please follow CLI prompts for helper information.
 
 # Screenshots
