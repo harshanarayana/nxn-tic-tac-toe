@@ -35,7 +35,7 @@ python tic-tac-toe.py
 ``` 
 
 # Run Game Using Docker
-``bash
+```bash
 # Start the Docker Image by building it if necessary
 docker-compose up
 
@@ -44,7 +44,7 @@ docker ps
 
 # Start the Game
 docker exec -it <container_number> tic-tac-toe
-``
+```
 
 After running the command, please follow CLI prompts for helper information.
 
